@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,8 @@ Route::post('/register', [AuthController::class, 'insert_register']);
 Route::get('admin/admin/subject', function () {
     return view('admin.admin.subject');
 });
+
+// Route::group(['middleware' => 'admin'], function () {
+    Route::get('admin/admin/subject', [SubjectController::class, 'list']);
+
+// });

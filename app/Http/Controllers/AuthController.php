@@ -49,8 +49,7 @@ class AuthController extends Controller
     }
 
     public function insert_register(Request $request)
-    {
-        
+    {      
         // dd($request->all());
         $user = new User();
         $request->validate([
