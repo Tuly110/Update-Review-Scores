@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,6 @@ Route::post('/login', [AuthController::class,'AuthLogin']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/forgot_password', [AuthController::class, 'forgotpassword']);
 Route::post('/forgot_password', [AuthController::class, 'PostForgotPassword']);
-// Route::post('/register', [AuthController::class, 'register']);
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'insert_register']);
 
@@ -30,7 +30,8 @@ Route::get('admin/admin/subject', function () {
     return view('admin.admin.subject');
 });
 
-// Route::group(['middleware' => 'admin'], function () {
-    Route::get('admin/admin/subject', [SubjectController::class, 'list']);
+// SUBJECT   
+Route::get('admin/admin/subject', [SubjectController::class, 'list']);
 
-// });
+// STUDENT 
+Route::get('admin/admin/mark/{id}', [StudentController::class, 'list']);
