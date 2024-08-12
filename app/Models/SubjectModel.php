@@ -14,7 +14,12 @@ class SubjectModel extends Model
     {
         $return = self::select('subject.*')
                 ->where('is_deleted', '=', 0)
-                ->paginate(3);
+                ->paginate(5);
         return $return;
+    }
+
+    static public function getSingle($id)
+    {
+        return self::find($id);
     }
 }
