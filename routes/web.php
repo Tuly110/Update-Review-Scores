@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\updateScoreController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +37,10 @@ Route::get('admin/admin/subject', [SubjectController::class, 'list']);
 
 // STUDENT 
 Route::get('admin/admin/mark/{id}', [StudentController::class, 'list']);
+
+// UPDATE SCORE 
+Route::get('admin/admin/update_score/{id}', [StudentController::class, 'update_score']);
+
+// EXPORT EXCEL
+Route::get('/export_excel/{id}', [UserController::class, 'export_excel'])->name('export_excel');
+

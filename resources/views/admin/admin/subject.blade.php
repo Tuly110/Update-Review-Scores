@@ -5,9 +5,8 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Danh sách học phần </h3>
+          <h3>Danh sách các lớp học phần </h3>
         </div>
-
         <div class="title_right">
           <div class="col-md-5 col-sm-5   form-group pull-right top_search">
             <div class="input-group">
@@ -49,7 +48,8 @@
                       <td>
                         <a href="{{ url('admin/admin/mark/'.$value->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-folder"></i> Xem điểm </a>
                         <a href="#" class="btn btn-info btn-sm"><i class="fa fa-th-list"></i> Xem điểm phúc khảo </a>
-                        <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-sign-in"></i> Xuất file excel </a>
+                        <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-sign-in"></i> Excel </a>
+                        
                       </td>
                     </tr>
                   @endforeach
