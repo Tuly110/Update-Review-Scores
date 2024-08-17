@@ -40,6 +40,8 @@ Route::get('admin/admin/mark/{id}', [StudentController::class, 'list']);
 
 // UPDATE SCORE 
 Route::get('admin/admin/update_score/{id}', [StudentController::class, 'update_score']);
+Route::post('admin/admin/update_score/{id}', [StudentController::class, 'save_score']);
+Route::get('admin/admin/view_update_score/{id}', [StudentController::class, 'view_update_score']);
 
 // EXPORT EXCEL
 Route::get('/export_excel/{id}', [UserController::class, 'export_excel'])->name('export_excel');

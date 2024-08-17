@@ -2,73 +2,92 @@
 @section('content')
 <!-- page content -->
 <div class="right_col" role="main">
-    <div class="">
-      <div class="page-title">
-        <div class="title_left ">
-            <h4>Phúc khảo điểm học phần {{ $getSubject->name }}</h4>
-        </div>
-        <div class="title_right">
-          <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-            <div class="input-group">
-              <a href="{{ url('admin/admin/update_score/'.$getSubject->id) }}" class="btn btn-primary btn-sm"><i class="fa-regular fa-bookmark"></i> Lưu điểm </a> 
-              <i class="fa-solid fa-floppy-disk"></i>
+   <form action="" method="post">
+    {{ csrf_field() }}
+      <div class="">
+        <div class="page-title">
+          <div class="title_left ">
+              <h4>Phúc khảo điểm học phần {{ $getSubject->name }}</h4>
+              {{-- <h4>Phúc khảo điểm học phần {{ $getStudent->MSV }}</h4> --}}
+              {{-- <h4>Phúc khảo điểm học phần {{ $getOnlyUpdate->update_score }}</h4> --}}
+              {{-- <h4>Phúc khảo điểm học phần {{ $getRecord->MSV }}</h4> --}}
+          </div>
+          <div class="title_right">
+            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+              <div class="input-group">
+                <button type="submit" class="btn btn-success btn-sm" name="add" ><i class="fa fa-check"></i> Lưu điểm </button>
+                {{-- <a href="" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Lưu điểm </a>  --}}
+              </div>
             </div>
           </div>
-        </div>
-      </div>     
-      <div class="clearfix"></div>
+        </div>     
+        <div class="clearfix"></div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="x_panel">
-            <div class="x_content">
-              <!-- start project list -->
-              <table class="table table-striped projects">
-                <thead>
-                  <tr class="text-center">
-                    <th style="">STT</th>
-                    <th style="">MSV</th>
-                    <th>Họ và tên</th>
-                    <th>Lớp sinh hoạt</th>
-                    <th>Điểm cuối kì</th>
-                    <th>Điểm phúc khảo</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($getUpdateScore as $value )
+        <div class="row">
+          <div class="col-md-12">
+            <div class="x_panel">
+              <div class="x_content">
+                <!-- start project list -->
+                <table class="table projects">
+                  <thead>
                     <tr class="text-center">
-                      <td>{{ $value->ID }}</td>
-                      <td>{{ $value->MSV }}</td>
-                      <td>
-                        {{ $value->First_Name}} {{ $value->Last_Name}}
-                      </td>
-                      <td class="project_progress">
-                        {{ $value->Class}}
-                      </td> 
-                      <td class="project_progress">
-                        {{ $result = ($value->Midterm_score * 0.2)+
-                        ($value->Final_score *0.6)+
-                        ($value->Dilligence_score*0.1)+
-                        ($value->Exercise_score*0.1) }} 
-                      </td>
-                      <form action="" method="POST">
-                        <td>
-                          <input type="text" name="update_score" required>
-                        </td>
-                      </form>
-                      
+                      <th style="">STT</th>
+                      <th style="">MSV</th>
+                      <th>Họ và tên</th>
+                      <th>Lớp sinh hoạt</th>
+                      <th>Điểm cuối kì</th>
+                      <th>Điểm phúc khảo</th>
+                      <th>Tình trạng</th>
                     </tr>
-                  @endforeach
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    @foreach ($getRecord as $value )
+                      <tr class="text-center">
+                        <td>
+                          <input name="ID" type="text" value="{{ $value->ID }}" class="text-center" readonly size="1" style="border: 0;">
+                        </td>
+                        <td>
+                          <input name="MSV" type="text" value="{{ $value->MSV }}" class="text-center" readonly size="5" style="border: 0;">
+                        </td>
+                        <td>
+                          <input name="" type="text" value=" {{ $value->First_Name}} {{ $value->Last_Name}}" class="text-center" readonly size="25" style="border: 0;">
+                        </td>
+                        <input type="hidden" name="First_Name" value="{{ $value->First_Name}}">
+                        <input type="hidden" name="Last_Name" value="{{ $value->Last_Name}}">
+                        <input type="hidden" name="ID_subject" value="{{ $value->ID_subject}}">
+                        <input type="hidden" name="Dilligence_score" value="{{ $value->Dilligence_score}}">
+                        <input type="hidden" name="Midterm_score" value="{{ $value->Midterm_score}}">
+                        <td class="project_progress">
+                          <input name="Class" type="text" value="{{ $value->Class}}" class="text-center" readonly size="1" style="border: 0;">
+                        </td> 
+                        <td class="project_progress">
+                          <input name="final_score" type="text" value="{{($value->Final_score)}}" class="text-center" readonly size="1" style="border: 0;">
+                        </td>
+                        <td>
+                          <input type="text" name="update_score" required size="5">
+                        </td>
+                        <td>
+                            @foreach ($getOnlyUpdate as $key )
+                              @if (($value->MSV)==($key->msv))
+                                <span class="text-danger font-weight-bold">Đã nhập điểm</span>
+                              {{-- @else
+                                <input type="text" name="update_score" required size="5"> --}}
+                              @endif
+                            @endforeach 
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
+        </div>
+        <div style="padding: 10px;" class="d-flex justify-content-center">
+          {!! $getRecord->appends(Request::except('page'))->links() !!}
         </div>
       </div>
-      {{-- <div style="padding: 10px;" class="d-flex justify-content-center">
-        {!! $getRecord->appends(Request::except('page'))->links() !!}
-      </div> --}}
-    </div>
+   </form>
   </div>
   <!-- /page content -->
 @endsection

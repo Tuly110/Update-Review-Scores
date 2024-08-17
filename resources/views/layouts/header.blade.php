@@ -44,9 +44,9 @@
           <ul class="nav side-menu">
             <li>
               <a href="{{ url('admin/admin/subject') }}">
-                <i class="fa fa-home"></i> Home </a>
+                <i class="fa fa-home"></i> Danh sách học phần </a>
             </li>
-            <li><a><i class="fa fa-edit"></i> Forms </a>
+            {{-- <li><a><i class="fa fa-edit"></i> Forms </a> --}}
             </li>
         </div>    
       </div>

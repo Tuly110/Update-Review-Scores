@@ -25,8 +25,9 @@
         <div class="col-md-12">
           <div class="x_panel">
             <div class="x_content">
+              @include('_message')
               <!-- start project list -->
-              <table class="table table-striped projects">
+              <table class="table table-striped projects" >
                 <thead>
                   <tr>
                     <th style="">STT</th>
@@ -47,7 +48,7 @@
                       </td>
                       <td>
                         <a href="{{ url('admin/admin/mark/'.$value->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-folder"></i> Xem điểm </a>
-                        <a href="#" class="btn btn-info btn-sm"><i class="fa fa-th-list"></i> Xem điểm phúc khảo </a>
+                        <a href="{{ url('admin/admin/view_update_score/'.$value->id) }}" class="btn btn-success btn-sm"><i class="fa fa-unlock"></i> Xem điểm đã phúc khảo </a> 
                         <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-sign-in"></i> Excel </a>
                         
                       </td>
