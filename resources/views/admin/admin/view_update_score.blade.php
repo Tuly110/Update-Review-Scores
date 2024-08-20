@@ -10,15 +10,22 @@
         <div class="title_right">
           <div class="col-md-5 col-sm-5   form-group pull-right top_search">
             <div class="input-group">
-              <a href="" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> In điểm </a>        
-              <a style="background-color: rgb(26, 236, 23); border: 0; color: black" href="" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Xuất excel </a>  
+              <a href="{{ url('admin/admin/print/'.$getSubject->id) }}" class="btn btn-primary btn-sm">In điểm </a>        
+              <form action="{{ route('export_excel') }}" method="POST" target="__blank">
+                @csrf
+                 <button style="background-color: rgb(26, 236, 23); border: 0; color: black" href="" class="btn btn-primary btn-sm">
+                  Xuất file excel
+                </button>
+              </form>
             </div>
           </div>
         </div>
         <div class="title_right">
         </div>
-      </div>    
+      </div>
+      
       <div class="clearfix"></div>
+
       <div class="row">
         <div class="col-md-12">
           <div class="x_panel">
@@ -38,7 +45,7 @@
                 <tbody>
                   @foreach ($getRecord as $value )
                     <tr class="text-center">
-                      <td>{{ $value->id }}</td>
+                      <td>{{ $loop->iteration }}</td>
                       <td>{{ $value->msv }}</td>
                       <td>
                         {{ $value->First_Name}} {{ $value->Last_Name}}

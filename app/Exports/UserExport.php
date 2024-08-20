@@ -2,33 +2,32 @@
 
 namespace App\Exports;
 
-use App\Http\Controllers\StudentController;
-use App\Models\StudentModel;
-use App\Models\SubjectModel;
-use App\Models\User;
+use App\Models\updatedModel;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-
-
-class UserExport implements FromView
+class UserExport implements FromCollection
 {
-   public $subject_id;
-   function __construct($subject_id)
-   {
-      $this->subject_id = $subject_id;
-   }
-
-   public function view():View
-   {
-      $subject_id = $this->subject_id;
-      return view('admin.admin.subject', compact('subject_id'));
-   }
-   // public function collection()
+   // use Exportable;
+   // private $updated;
+   // public function __construct()
    // {
-   //      return StudentModel::all();
+   //    $this->updated = updatedModel::all();
    // }
-    
+
+   // public function view():View
+   // {
+   //    return view('admin/admin/view_update_score', [
+   //       'updated' => $this->updated
+   //    ]);
+   // }
+
+   public function collection()
+   {
+      return updatedModel::all();
+   }
     
 }

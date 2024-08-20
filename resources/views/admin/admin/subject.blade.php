@@ -29,8 +29,8 @@
               <!-- start project list -->
               <table class="table table-striped projects" >
                 <thead>
-                  <tr>
-                    <th style="">STT</th>
+                  <tr  style="background-color: #2A3F54; color: white">
+                    <th style="">#</th>
                     <th style="">Tên lớp học phần</th>
                     <th>Giảng viên</th>
                     <th>Thao tác</th>
@@ -39,7 +39,7 @@
                 <tbody>
                   @foreach ($getRecord as $value )
                     <tr>
-                      <td>{{ $value->id }}</td>
+                      <td>{{ $loop->iteration }}</td>
                       <td>
                         {{ $value->name}}
                       </td>
@@ -47,9 +47,9 @@
                         {{ $value->teacher_name}}
                       </td>
                       <td>
-                        <a href="{{ url('admin/admin/mark/'.$value->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-folder"></i> Xem điểm </a>
-                        <a href="{{ url('admin/admin/view_update_score/'.$value->id) }}" class="btn btn-success btn-sm"><i class="fa fa-unlock"></i> Xem điểm đã phúc khảo </a> 
-                        <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-sign-in"></i> Excel </a>
+                        <a href="{{ url('admin/admin/mark/'.$value->id) }}" class="btn btn-primary btn-sm"> Xem điểm </a>
+                        <a href="{{ url('admin/admin/view_update_score/'.$value->id) }}" class="btn btn-success btn-sm"> Xem điểm đã phúc khảo </a> 
+                        <a href="#" class="btn btn-danger btn-sm"> Excel </a>
                         
                       </td>
                     </tr>
