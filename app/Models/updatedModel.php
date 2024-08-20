@@ -14,7 +14,7 @@ class updatedModel extends Model
     {
         $return = self::select('updated.*')
                 ->where('updated.ID_subject', '=', $subject_id)
-                ->paginate(5);
+                ->paginate(50);
         // dd($return);
         return $return;
     }

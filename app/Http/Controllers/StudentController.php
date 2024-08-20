@@ -25,7 +25,6 @@ class StudentController extends Controller
         $data['getRecord'] = StudentModel::getUpdateScore($id);
         $data['getStudent'] = StudentModel::getSingle($id);
         $data['getOnlyUpdate'] = updatedModel::getOnlyUpdate($id);
-
         $data['header_title'] = "Nhập điểm";
         return view('admin/admin/update_score', $data);
     }
@@ -51,6 +50,15 @@ class StudentController extends Controller
         $data['getRecord'] = updatedModel::getOnlyUpdate($id);
         $data['header_title'] = "Danh sách sinh viên đã phúc khảo điểm";
         return view('admin/admin/view_update_score', $data);
+    }
+
+    public function print($id)
+    {
+        $data['getSubject'] = SubjectModel::getSingle($id);
+        $data['subject_id'] = $id;
+        $data['getRecord'] = updatedModel::getOnlyUpdate($id);
+        $data['header_title'] ="In danh sách điểm";
+        return view('admin/admin/print', $data);
     }
 
     
