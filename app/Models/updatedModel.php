@@ -18,6 +18,15 @@ class updatedModel extends Model
         // dd($return);
         return $return;
     }
+
+    static public function studentGetUpdated()
+    {
+        return self::select('updated.update_score')
+        ->join('students', 'updated.msv', '=', 'students.MSV')
+        ->whereColumn('students.MSV', '=','updated.msv')
+        ->get();
+    }
+
     static public function getSingle($id)
     {
         return self::find($id);

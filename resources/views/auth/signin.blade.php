@@ -34,7 +34,7 @@
           <section class="login_content" >
             <form action="" method="post" >
                 {{ csrf_field() }}
-                <h1>Login Form</h1>
+                <h1>Sign in Form</h1>
                 <div>
                     <input type="text" class="form-control" name="name" placeholder="Username" required=""/>
                 </div>
@@ -46,8 +46,9 @@
                   <input type="number" class="form-control" name="mobile" placeholder="Mobile" required="" />
                   <div class="text-danger"><b>{{ $errors->first('mobile') }}</b></div>
               </div>
-                <div>
+                <div class="mt-4">
                     <input type="password" class="form-control" name="password" placeholder="Password" required="" />
+                    <div class="text-danger"><b>{{ $errors->first('password') }}</b></div>
                 </div>
                 
                 <div class="col-12">

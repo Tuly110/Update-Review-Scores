@@ -6,16 +6,18 @@
     {{ csrf_field() }}
       <div class="">
         <div class="page-title">
-          <div class="title_left ">
+          <div class="title_left pt-2">
               <h5>Phúc khảo điểm học phần <b>{{ $getSubject->name }}</b></h5>
-              {{-- <h4>Phúc khảo điểm học phần {{ $getStudent->MSV }}</h4> --}}
-              {{-- <h4>Phúc khảo điểm học phần {{ $getOnlyUpdate->update_score }}</h4> --}}
-              {{-- <h4>Phúc khảo điểm học phần {{ $getRecord->MSV }}</h4> --}}
           </div>
-          <div class="title_right">
-            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+          <div class="title_right pt-0">
+            <div class="col-md-9 col-sm-9 form-group pull-right top_search">
               <div class="input-group">
+                @if($countStudent > 0)
                 <button type="submit" class="btn btn-success btn-sm" name="add" ><i class="fa fa-check"></i> Lưu điểm </button>
+                @else
+                  <h5 class="text-danger">Không có sinh viên xin phúc khảo điểm</h5>
+                @endif  
+                
                 {{-- <a href="" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Lưu điểm </a>  --}}
               </div>
             </div>
@@ -46,27 +48,27 @@
                         @foreach ($getRecord as $value )
                           <tr class="text-center">
                             <td>
-                              <input name="ID" type="text" value="{{ $loop->iteration }}" class="text-center" readonly size="1" style="border: 0;">
+                              <input name="ID[]" type="text" value="{{ $loop->iteration }}" class="text-center" readonly size="1" style="border: 0;">
                             </td>
                             <td>
-                              <input name="MSV" type="text" value="{{ $value->MSV }}" class="text-center" readonly size="5" style="border: 0;">
+                              <input name="MSV[]" type="text" value="{{ $value->MSV }}" class="text-center" readonly size="5" style="border: 0;">
                             </td>
                             <td>
                               <input name="" type="text" value=" {{ $value->First_Name}} {{ $value->Last_Name}}" class="text-center" readonly size="25" style="border: 0;">
                             </td>
-                            <input type="hidden" name="First_Name" value="{{ $value->First_Name}}">
-                            <input type="hidden" name="Last_Name" value="{{ $value->Last_Name}}">
-                            <input type="hidden" name="ID_subject" value="{{ $value->ID_subject}}">
-                            <input type="hidden" name="Dilligence_score" value="{{ $value->Dilligence_score}}">
-                            <input type="hidden" name="Midterm_score" value="{{ $value->Midterm_score}}">
+                            <input type="hidden" name="First_Name[]" value="{{ $value->First_Name}}">
+                            <input type="hidden" name="Last_Name[]" value="{{ $value->Last_Name}}">
+                            <input type="hidden" name="ID_subject[]" value="{{ $value->ID_subject}}">
+                            <input type="hidden" name="Dilligence_score[]" value="{{ $value->Dilligence_score}}">
+                            <input type="hidden" name="Midterm_score[]" value="{{ $value->Midterm_score}}">
                             <td class="project_progress">
-                              <input name="Class" type="text" value="{{ $value->Class}}" class="text-center" readonly size="1" style="border: 0;">
+                              <input name="Class[]" type="text" value="{{ $value->Class}}" class="text-center" readonly size="1" style="border: 0;">
                             </td> 
                             <td class="project_progress">
-                              <input name="final_score" type="text" value="{{($value->Final_score)}}" class="text-center" readonly size="1" style="border: 0;">
+                              <input name="final_score[]" type="text" value="{{($value->Final_score)}}" class="text-center" readonly size="1" style="border: 0;">
                             </td>
                             <td>
-                              <input type="text" name="update_score" size="5">
+                              <input type="text" name="update_score[]" size="5">
                             </td>
                             <td>
                                 @foreach ($getOnlyUpdate as $key )

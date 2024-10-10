@@ -7,16 +7,19 @@
         <div class="title_left">
           <h3>Danh sách các lớp học phần </h3>
         </div>
-        <div class="title_right">
-          <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
+        <form action="">
+          <div class="title_right">
+            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+              <div class="input-group">
+                <input class="form-control me-2" value="{{ Request::get('name') }}" type="search" placeholder="Search for..." aria-label="Search" name="name">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="submit">Go!</button>
+                </span>
+                <a href="{{ url('admin/admin/subject/') }}" class="btn btn-primary" style="margin-left: 30px">Reset</a>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
       
       <div class="clearfix"></div>
@@ -49,8 +52,6 @@
                       <td>
                         <a href="{{ url('admin/admin/mark/'.$value->id) }}" class="btn btn-primary btn-sm"> Xem điểm </a>
                         <a href="{{ url('admin/admin/view_update_score/'.$value->id) }}" class="btn btn-success btn-sm"> Xem điểm đã phúc khảo </a> 
-                        <a href="#" class="btn btn-danger btn-sm"> Excel </a>
-                        
                       </td>
                     </tr>
                   @endforeach

@@ -29,13 +29,13 @@
                     <th>Điểm bài tập</th>
                     <th>Điểm giữa kì</th>
                     <th>Điểm cuối kì</th>
+                    <th>Điểm đã phúc khảo</th>
                     <th>Điểm trung bình</th>
                     <th>Điểm chữ</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                   
+                  <tr> 
                     @foreach ($getRecord as $value )
                       <tr class="text-center">
                         <td>{{ $loop->iteration }}</td>
@@ -61,65 +61,125 @@
                         <td class="project_progress">
                           {{ $value->Final_score}}
                         </td>
-                        <td>
-                          {{ $result = ($value->Midterm_score * 0.2)+
-                            ($value->Final_score *0.6)+
-                            ($value->Dilligence_score*0.1)+
-                            ($value->Exercise_score*0.1) }} 
+                        <td class="project_progress">
+                            {{ $value->update_score}}
                         </td>
                         <td>
-                          @if ((0 <= 
-                            ($value->Midterm_score * 0.2)+
-                            ($value->Final_score *0.6)+
-                            ($value->Dilligence_score*0.1)+
-                            ($value->Exercise_score*0.1)) 
-                            && 
-                            (($value->Midterm_score * 0.2)+
-                            ($value->Final_score *0.6)+
-                            ($value->Dilligence_score*0.1)+
-                            ($value->Exercise_score*0.1) <=3.5) )
-                            <span class="text-danger font-weight-bold">F</span>  
-                          @elseif ((3.6 <= 
-                            ($value->Midterm_score * 0.2)+
-                            ($value->Final_score *0.6)+
-                            ($value->Dilligence_score*0.1)+
-                            ($value->Exercise_score*0.1))
-                            &&
-                            (($value->Midterm_score * 0.2)+
-                            ($value->Final_score *0.6)+
-                            ($value->Dilligence_score*0.1)+
-                            ($value->Exercise_score*0.1) <=4.9) )
-                            <span class="text-warning font-weight-bold">D</span> 
-                          @elseif ((5 <= 
-                            ($value->Midterm_score * 0.2)+
-                            ($value->Final_score *0.6)+
-                            ($value->Dilligence_score*0.1)+
-                            ($value->Exercise_score*0.1)) 
-                            &&
-                            (($value->Midterm_score * 0.2)+
-                            ($value->Final_score *0.6)+
-                            ($value->Dilligence_score*0.1)+
-                            ($value->Exercise_score*0.1) <=6.9) )
-                            <span class="text-info font-weight-bold">C</span> 
-                          @elseif ((7 <= 
-                            ($value->Midterm_score * 0.2)+
-                            ($value->Final_score *0.6)+
-                            ($value->Dilligence_score*0.1)+
-                            ($value->Exercise_score*0.1)) 
-                            && 
-                            (($value->Midterm_score * 0.2)+
-                            ($value->Final_score *0.6)+
-                            ($value->Dilligence_score*0.1)+
-                            ($value->Exercise_score*0.1) <=8.4) )
-                            <span class="text-primary font-weight-bold">B</span> 
-                          @else 
-                            <span class="text-success font-weight-bold">A</span> 
+                          @if($value->update_score)
+                            {{ $result = ($value->Midterm_score * 0.2)+
+                              ($value->update_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1) }} 
+                          @else
+                            {{ $result = ($value->Midterm_score * 0.2)+
+                              ($value->Final_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1) }} 
                           @endif
+                        </td>
+                        <td>
+                          @if($value->update_score)
+                            @if ((0 <= 
+                              ($value->Midterm_score * 0.2)+
+                              ($value->update_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1)) 
+                              && 
+                              (($value->Midterm_score * 0.2)+
+                              ($value->update_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1) <=3.5) )
+                              <span class="text-danger font-weight-bold">F</span>  
+                            @elseif ((3.6 <= 
+                              ($value->Midterm_score * 0.2)+
+                              ($value->update_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1))
+                              &&
+                              (($value->Midterm_score * 0.2)+
+                              ($value->update_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1) <=4.9) )
+                              <span class="text-warning font-weight-bold">D</span> 
+                            @elseif ((5 <= 
+                              ($value->Midterm_score * 0.2)+
+                              ($value->update_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1)) 
+                              &&
+                              (($value->Midterm_score * 0.2)+
+                              ($value->update_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1) <=6.9) )
+                              <span class="text-info font-weight-bold">C</span> 
+                            @elseif ((7 <= 
+                              ($value->Midterm_score * 0.2)+
+                              ($value->update_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1)) 
+                              && 
+                              (($value->Midterm_score * 0.2)+
+                              ($value->update_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1) <=8.4) )
+                              <span class="text-primary font-weight-bold">B</span> 
+                            @else 
+                              <span class="text-success font-weight-bold">A</span> 
+                            @endif
+                          @else
+                            @if ((0 <= 
+                              ($value->Midterm_score * 0.2)+
+                              ($value->Final_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1)) 
+                              && 
+                              (($value->Midterm_score * 0.2)+
+                              ($value->Final_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1) <=3.5) )
+                              <span class="text-danger font-weight-bold">F</span>  
+                            @elseif ((3.6 <= 
+                              ($value->Midterm_score * 0.2)+
+                              ($value->Final_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1))
+                              &&
+                              (($value->Midterm_score * 0.2)+
+                              ($value->Final_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1) <=4.9) )
+                              <span class="text-warning font-weight-bold">D</span> 
+                            @elseif ((5 <= 
+                              ($value->Midterm_score * 0.2)+
+                              ($value->Final_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1)) 
+                              &&
+                              (($value->Midterm_score * 0.2)+
+                              ($value->Final_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1) <=6.9) )
+                              <span class="text-info font-weight-bold">C</span> 
+                            @elseif ((7 <= 
+                              ($value->Midterm_score * 0.2)+
+                              ($value->Final_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1)) 
+                              && 
+                              (($value->Midterm_score * 0.2)+
+                              ($value->Final_score *0.6)+
+                              ($value->Dilligence_score*0.1)+
+                              ($value->Exercise_score*0.1) <=8.4) )
+                              <span class="text-primary font-weight-bold">B</span> 
+                            @else 
+                              <span class="text-success font-weight-bold">A</span> 
+                            @endif
+                          @endif
+                          
                         </td>
                       </tr>
                     @endforeach
                   </tr>   
-                  
                 </tbody>
               </table>
             </div>
